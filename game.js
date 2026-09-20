@@ -1,9 +1,9 @@
-const HERO_ART={warrior:'assets/alden.svg',ranger:'assets/lyra.svg',mage:'assets/elias.svg',cleric:'assets/mira.svg'};
+const HERO_ART={warrior:'assets/alden-raster.png',ranger:'assets/lyra-raster.png',mage:'assets/elias-raster.png',cleric:'assets/mira-raster.png'};
 const HERO_STATE_ART={
- warrior:{idle:'assets/alden.svg',attack:'assets/alden-attack.svg',cast:'assets/alden-attack.svg',hit:'assets/alden-hit.svg',ko:'assets/alden-ko.svg'},
- ranger:{idle:'assets/lyra.svg',attack:'assets/lyra.svg',cast:'assets/lyra.svg',hit:'assets/lyra.svg',ko:'assets/lyra.svg'},
- mage:{idle:'assets/elias.svg',attack:'assets/elias.svg',cast:'assets/elias.svg',hit:'assets/elias.svg',ko:'assets/elias.svg'},
- cleric:{idle:'assets/mira.svg',attack:'assets/mira.svg',cast:'assets/mira.svg',hit:'assets/mira.svg',ko:'assets/mira.svg'}
+ warrior:{idle:HERO_ART.warrior,attack:'assets/alden-attack.svg',cast:'assets/alden-attack.svg',hit:'assets/alden-hit.svg',ko:'assets/alden-ko.svg'},
+ ranger:{idle:HERO_ART.ranger,attack:HERO_ART.ranger,cast:HERO_ART.ranger,hit:HERO_ART.ranger,ko:HERO_ART.ranger},
+ mage:{idle:HERO_ART.mage,attack:HERO_ART.mage,cast:HERO_ART.mage,hit:HERO_ART.mage,ko:HERO_ART.mage},
+ cleric:{idle:HERO_ART.cleric,attack:HERO_ART.cleric,cast:HERO_ART.cleric,hit:HERO_ART.cleric,ko:HERO_ART.cleric}
 };
 function heroArt(h){return HERO_STATE_ART[h.role]?.[h.visualState||'idle']||HERO_ART[h.role]}const ENEMY_ART={slime:'assets/slime.svg',goblin:'assets/goblin.svg',wolf:'assets/wolf.svg',golem:'assets/golem.svg',boss:'assets/elder-wyrm.svg'};
 const HEROES=[{name:"Alden",cls:"Warrior",role:"warrior",ability:"POWER STRIKE",maxHp:150,hp:150,atk:19,spd:1.15,level:1,xp:0,nextXp:60,aether:0,visualState:"idle"},{name:"Lyra",cls:"Ranger",role:"ranger",ability:"DOUBLE SHOT",maxHp:110,hp:110,atk:15,spd:.82,level:1,xp:0,nextXp:55,aether:0,visualState:"idle"},{name:"Elias",cls:"Mage",role:"mage",ability:"FIRE",maxHp:90,hp:90,atk:23,spd:1.35,level:1,xp:0,nextXp:58,aether:0,visualState:"idle"},{name:"Mira",cls:"Cleric",role:"cleric",ability:"CURE",maxHp:105,hp:105,atk:11,spd:1.5,level:1,xp:0,nextXp:52,aether:0,visualState:"idle"}];
