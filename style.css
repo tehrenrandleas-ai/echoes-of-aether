@@ -122,3 +122,50 @@
 @keyframes heroAttackFrames{0%{transform:translateX(0) rotate(0)}35%{transform:translateX(5px) rotate(-7deg)}65%{transform:translateX(12px) rotate(5deg)}100%{transform:translateX(0)}}
 @keyframes heroCastFrames{0%{transform:translateY(0);filter:brightness(1)}50%{transform:translateY(-7px);filter:brightness(1.65) drop-shadow(0 0 7px #75dcff)}100%{transform:translateY(0);filter:brightness(1)}}
 @keyframes heroHitFrames{0%,100%{transform:translateX(0)}50%{transform:translateX(-7px);filter:brightness(2.7) saturate(.2)}}
+
+/* ART 3.0 — target-quality composition pass */
+.battlefield{height:430px;background:#183d35}
+.scene-art{background:
+linear-gradient(180deg,#4f91a8 0 18%,#2c665d 18% 37%,#214c3e 37% 58%,#456744 58% 100%)}
+.scene-art:before{inset:0;background:
+radial-gradient(ellipse at 8% 24%,#163d34 0 13%,transparent 14%),
+radial-gradient(ellipse at 24% 31%,#1b4738 0 16%,transparent 17%),
+radial-gradient(ellipse at 72% 29%,#214f3b 0 19%,transparent 20%),
+radial-gradient(ellipse at 94% 22%,#153b32 0 17%,transparent 18%),
+linear-gradient(118deg,transparent 0 25%,rgba(224,245,196,.15) 26% 34%,transparent 35% 44%,rgba(222,245,193,.12) 45% 54%,transparent 55%)}
+.far-trees{top:7%;height:52%;opacity:.96;background:
+repeating-linear-gradient(92deg,transparent 0 6%,#183d33 6% 9%,transparent 9% 15%,#214b39 15% 19%,transparent 19% 26%),
+linear-gradient(180deg,transparent 0 20%,rgba(26,66,50,.9) 21% 100%)}
+.sunbeams{background:linear-gradient(116deg,transparent 0 30%,rgba(240,250,197,.15) 31% 38%,transparent 39% 51%,rgba(237,248,200,.12) 52% 59%,transparent 60%)}
+.castle{right:7%;top:8%;height:43%;width:22%;opacity:.7;background:#667263}
+.ruin-columns{left:16%;top:25%;height:48%;width:28%;opacity:.7}
+.waterfall{left:50%;top:30%;width:8%;height:43%;opacity:.95}
+.stone-path{left:31%;right:3%;height:49%;background:
+repeating-linear-gradient(175deg,transparent 0 22px,rgba(194,187,126,.20) 23px 28px),
+linear-gradient(155deg,transparent 0 11%,rgba(159,155,103,.43) 12% 80%,transparent 81%)}
+.foreground{height:24%;background:
+radial-gradient(ellipse at 5% 105%,#102f25 0 28%,transparent 29%),
+radial-gradient(ellipse at 94% 106%,#123329 0 30%,transparent 31%),
+linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
+.party-side{left:5%;bottom:13px;width:230px;height:370px}
+.hero-sprite{width:132px;height:86px}
+.hero-sprite:nth-child(1){top:8px;left:38px}.hero-sprite:nth-child(2){top:94px;left:5px}.hero-sprite:nth-child(3){top:182px;left:43px}.hero-sprite:nth-child(4){top:270px;left:8px}
+.hero-art{width:106px;height:106px;object-fit:contain;filter:drop-shadow(3px 6px 0 rgba(4,20,14,.7))}
+.enemy-side{right:5%;bottom:38px;width:48%;height:325px}
+.enemy-unit:nth-child(1){right:55px;top:66px}.enemy-unit:nth-child(2){right:0;top:190px}.enemy-unit:nth-child(3){right:160px;top:198px}
+.enemy-art{width:126px;height:126px}
+.enemy-mini{width:142px;padding:5px;border:2px solid #62c7fa;box-shadow:inset 0 0 0 2px #174b73,0 0 10px rgba(41,177,238,.35)}
+.battle-log{min-height:54px;font-size:11px;letter-spacing:.3px}
+.command-deck{grid-template-columns:145px 1fr}.command-list{padding:9px}.command-list>div:not(.command-title){font-size:9px;padding:4px 7px}
+.aether-btn{min-height:44px}.aether-btn b{font-size:9px}.aether-btn small{font-size:8px}
+.party-panel{padding:7px;gap:7px}.card{min-height:88px;padding:6px}.portrait{width:62px;height:74px;object-fit:contain}.card-top{font-size:10px}.class,.stats{font-size:8px}
+@media(max-width:520px){
+ .battlefield{height:400px}
+ .party-side{left:2%;bottom:5px;width:180px;height:365px;transform:scale(.82);transform-origin:bottom left}
+ .hero-sprite:nth-child(1){top:8px;left:42px}.hero-sprite:nth-child(2){top:94px;left:4px}.hero-sprite:nth-child(3){top:181px;left:46px}.hero-sprite:nth-child(4){top:268px;left:7px}
+ .hero-art{width:110px;height:110px}
+ .enemy-side{right:1%;bottom:20px;width:51%;height:330px;transform:scale(.82);transform-origin:bottom right}
+ .enemy-unit:nth-child(1){right:38px;top:72px}.enemy-unit:nth-child(2){right:-5px;top:192px}.enemy-unit:nth-child(3){right:122px;top:202px}
+ .command-deck{grid-template-columns:105px 1fr}.command-list{padding:6px}.command-list>div:not(.command-title){font-size:7px;padding:3px 5px}
+ .aether-btn{min-height:38px}.party-panel{padding:5px;gap:5px}.card{min-height:75px}.portrait{width:50px;height:62px}
+}
