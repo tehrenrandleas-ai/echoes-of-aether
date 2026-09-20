@@ -418,3 +418,14 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
   animation:none!important;
   clip-path:none!important;
 }
+
+/* ALDEN FORWARD ATTACK DIRECTION
+   Mirror only the real attack frame so its sword projects toward the enemies
+   on the right. Keep the complete idle-body composite underneath. */
+.hero-sprite.warrior.attack .hero-art,
+.hero-sprite.warrior.state-attack .hero-art,
+.hero-sprite.warrior.cast .hero-art,
+.hero-sprite.warrior.state-cast .hero-art{
+  transform:scaleX(-1)!important;
+  transform-origin:center bottom!important;
+}
