@@ -202,3 +202,23 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
 .ruin-columns{opacity:.42}.castle{opacity:.34}
 .stone-path{opacity:.72}.foreground{height:20%}
 @media(max-width:520px){.party-side{left:2%;bottom:8px;transform:scale(.80);transform-origin:bottom left}.hero-art{width:126px;height:126px}.hero-sprite.warrior .hero-art{width:132px;height:128px}.hero-sprite.ranger .hero-art{width:114px;height:118px}.hero-sprite.mage .hero-art{width:128px;height:128px}.hero-sprite.cleric .hero-art{width:124px;height:128px}}
+
+/* SOURCE ART CLEANUP — hide stray companion fragments in generated hero sheets */
+.hero-sprite.warrior .hero-art{clip-path:polygon(0 0,100% 0,100% 100%,34% 100%,34% 72%,0 72%)}
+.hero-sprite.mage .hero-art{clip-path:polygon(0 0,100% 0,100% 100%,32% 100%,32% 76%,0 76%)}
+.hero-sprite.cleric .hero-art{clip-path:polygon(0 0,82% 0,82% 96%,0 96%)}
+.card:nth-child(1) .portrait{clip-path:polygon(0 0,100% 0,100% 100%,34% 100%,34% 72%,0 72%)}
+.card:nth-child(3) .portrait{clip-path:polygon(0 0,100% 0,100% 100%,32% 100%,32% 76%,0 76%)}
+.card:nth-child(4) .portrait{clip-path:polygon(0 0,82% 0,82% 96%,0 96%)}
+/* ground the detailed heroes on a shared visual baseline */
+.hero-sprite.warrior{transform:translateY(7px)}
+.hero-sprite.ranger{transform:translateY(3px)}
+.hero-sprite.mage{transform:translateY(1px)}
+.hero-sprite.cleric{transform:translateY(-2px)}
+/* enemy silhouettes now sit on the same ground plane instead of floating over their labels */
+.enemy-sprite{align-items:flex-end}
+.enemy-art{object-position:center bottom}
+/* soften the remaining geometric scenery so it recedes behind the raster cast */
+.castle,.ruin-columns{filter:blur(.25px);mix-blend-mode:multiply}
+.scene-art:after{opacity:.72}
+.waterfall{opacity:.68}
