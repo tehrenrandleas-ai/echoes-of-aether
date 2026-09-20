@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="theme-color" content="#101a2d" />
-<title>Echoes of Aether — Prototype 0.1</title>
+<title>Echoes of Aether — Prototype 0.2</title>
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -13,29 +13,23 @@
     <div><h1>ECHOES OF AETHER</h1><p>WHISPERING WOODS</p></div>
     <div class="stage"><span>STAGE</span><strong id="stage">1 / 10</strong></div>
   </header>
-
   <section class="battlefield">
-    <div class="moon"></div>
-    <div class="trees back"></div>
+    <div class="moon"></div><div class="trees back"></div>
     <div class="enemy-zone">
-      <div id="enemySprite" class="pixel enemy goblin">♟</div>
-      <div class="nameplate"><b id="enemyName">Forest Goblin</b><span id="enemyLevel">LV 1</span></div>
-      <div class="bar enemy-bar"><i id="enemyHpBar"></i></div>
-      <small id="enemyHp">80 / 80 HP</small>
+      <div id="enemySprite" class="pixel enemy"><span class="enemy-body"></span></div>
+      <div class="nameplate"><b id="enemyName"></b><span id="enemyLevel"></span></div>
+      <div class="bar enemy-bar"><i id="enemyHpBar"></i></div><small id="enemyHp"></small>
     </div>
     <div class="party-field" id="partyField"></div>
+    <div id="fxLayer" class="fx-layer"></div>
   </section>
-
   <section class="battle-log" id="battleLog">The party enters Whispering Woods...</section>
-
+  <section class="aether-panel" id="aetherPanel"></section>
   <section class="party-panel" id="partyPanel"></section>
-
   <footer>
     <div><span>GOLD</span><b id="gold">0</b></div>
-    <button id="pauseBtn">Ⅱ PAUSE</button>
-    <button id="resetBtn">↻ RESET</button>
+    <button id="pauseBtn">Ⅱ PAUSE</button><button id="resetBtn">↻ RESET</button>
   </footer>
 </main>
 <script src="game.js"></script>
-</body>
-</html>
+</body></html>
