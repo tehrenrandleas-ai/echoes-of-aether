@@ -222,3 +222,9 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
 .castle,.ruin-columns{filter:blur(.25px);mix-blend-mode:multiply}
 .scene-art:after{opacity:.72}
 .waterfall{opacity:.68}
+
+/* ALDEN FINAL CONSISTENCY FIX */
+.hero-sprite.warrior .hero-art,.card:nth-child(1) .portrait{clip-path:none!important}
+.hero-sprite.warrior.state-idle .hero-art{animation:none!important;transform:none!important}
+.hero-sprite.warrior.state-attack .hero-art,.hero-sprite.warrior.state-cast .hero-art,.hero-sprite.warrior.state-hit .hero-art{width:130px!important;height:126px!important;animation:none!important;transform:none!important;object-fit:contain!important;object-position:center bottom!important}
+.hero-sprite.warrior{overflow:visible!important}
