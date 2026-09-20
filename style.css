@@ -389,3 +389,32 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
   display:none!important;
   animation:none!important;
 }
+
+/* ALDEN COMPOSITE ATTACK FRAME
+   The approved attack PNG contains the real moved sword/upper-body pose but its
+   lower body was lost. During attack, keep the complete idle body underneath
+   and place the real attack frame above it. No synthetic sword/light. */
+.hero-sprite.warrior.attack,
+.hero-sprite.warrior.state-attack,
+.hero-sprite.warrior.cast,
+.hero-sprite.warrior.state-cast{
+  background-image:url("assets/alden-idle-clean.png")!important;
+  background-repeat:no-repeat!important;
+  background-position:center bottom!important;
+  background-size:auto 104px!important;
+  overflow:visible!important;
+}
+.hero-sprite.warrior.attack .hero-art,
+.hero-sprite.warrior.state-attack .hero-art,
+.hero-sprite.warrior.cast .hero-art,
+.hero-sprite.warrior.state-cast .hero-art{
+  width:auto!important;
+  height:104px!important;
+  max-width:none!important;
+  max-height:104px!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  transform:none!important;
+  animation:none!important;
+  clip-path:none!important;
+}
