@@ -186,3 +186,19 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
 .stone-path{filter:contrast(1.08);opacity:.9}
 .enemy-art{image-rendering:pixelated}
 @media(max-width:520px){.hero-art{width:120px;height:120px}.hero-sprite:nth-child(1) .hero-art{width:122px;height:116px}.hero-sprite:nth-child(2) .hero-art{width:112px;height:116px}.hero-sprite:nth-child(3) .hero-art{width:118px;height:118px}.hero-sprite:nth-child(4) .hero-art{width:114px;height:118px}}
+
+/* CLEAN HERO COMPOSITION PASS */
+.party-side{left:4%;bottom:16px;width:205px;height:365px}
+.hero-sprite{width:145px;height:92px;left:0;align-items:flex-end}
+.hero-sprite:nth-child(1){top:2px;left:30px}.hero-sprite:nth-child(2){top:90px;left:2px}.hero-sprite:nth-child(3){top:178px;left:30px}.hero-sprite:nth-child(4){top:266px;left:2px}
+.hero-art{width:124px;height:124px;object-fit:contain;object-position:center bottom}
+.hero-sprite.warrior .hero-art{width:130px;height:126px}
+.hero-sprite.ranger .hero-art{width:112px;height:116px}
+.hero-sprite.mage .hero-art{width:126px;height:126px}
+.hero-sprite.cleric .hero-art{width:122px;height:126px}
+.card .portrait{object-fit:contain!important;object-position:center bottom!important;padding:2px}
+.scene-art{background:linear-gradient(180deg,#75a9ba 0 15%,#315e51 15% 34%,#194537 34% 57%,#405f3d 57% 100%)}
+.far-trees{opacity:.92;background:repeating-linear-gradient(90deg,transparent 0 7%,#153d31 7% 10%,transparent 10% 16%,#1d4937 16% 20%,transparent 20% 27%),linear-gradient(180deg,transparent 0 25%,#1e4a38 26% 100%)}
+.ruin-columns{opacity:.42}.castle{opacity:.34}
+.stone-path{opacity:.72}.foreground{height:20%}
+@media(max-width:520px){.party-side{left:2%;bottom:8px;transform:scale(.80);transform-origin:bottom left}.hero-art{width:126px;height:126px}.hero-sprite.warrior .hero-art{width:132px;height:128px}.hero-sprite.ranger .hero-art{width:114px;height:118px}.hero-sprite.mage .hero-art{width:128px;height:128px}.hero-sprite.cleric .hero-art{width:124px;height:128px}}
