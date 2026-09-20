@@ -308,3 +308,19 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
   72%{transform:rotate(7deg) translate(3px,0)}
   100%{transform:rotate(0deg) translate(0,0)}
 }
+
+/* ALDEN ATTACK: target the actual runtime classes (.attack/.cast), not only state-* */
+.hero-sprite.warrior.attack .hero-art,
+.hero-sprite.warrior.cast .hero-art,
+.hero-sprite.warrior.state-attack .hero-art,
+.hero-sprite.warrior.state-cast .hero-art{
+ animation:aldenSwordSwingVisible .50s ease-in-out!important;
+ transform-origin:50% 82%!important;
+}
+@keyframes aldenSwordSwingVisible{
+ 0%{transform:translate(0,0) rotate(0deg)}
+ 20%{transform:translate(-5px,0) rotate(-18deg)}
+ 48%{transform:translate(12px,-2px) rotate(24deg)}
+ 72%{transform:translate(8px,0) rotate(12deg)}
+ 100%{transform:translate(0,0) rotate(0deg)}
+}
