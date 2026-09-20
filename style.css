@@ -51,3 +51,29 @@
  .enemy-unit.boss .enemy-art{width:198px;height:188px}
  .waterfall{left:48%}
 }
+
+/* UI 1.3 — readable battle motion/effects */
+.battle-fx{position:absolute;z-index:20;pointer-events:none;font-weight:900;text-align:center;text-shadow:0 2px 0 #16202b;opacity:0}
+.battle-fx.slash,.battle-fx.power,.battle-fx.enemy-slash,.battle-fx.claw{font-family:Georgia,serif;color:#f8fbff;font-size:64px;right:20%;top:43%;animation:slashFx .48s ease-out forwards}
+.battle-fx.power{font-size:82px;color:#ffe88c;text-shadow:0 0 9px #ffc34d,0 2px #4e3011}
+.battle-fx.arrow,.battle-fx.double-arrow{left:29%;top:45%;font-size:34px;color:#f5df9b;animation:arrowFx .52s linear forwards}
+.battle-fx.double-arrow:after{content:"➶";position:absolute;left:-10px;top:13px}
+.battle-fx.fire{right:19%;top:40%;font-size:65px;color:#ffce55;text-shadow:0 0 8px #ff5b32;animation:fireFx .62s ease-out forwards}
+.battle-fx.heal{left:20%;top:46%;font-size:48px;color:#d9ffe0;text-shadow:0 0 10px #5ff0a1;animation:healBurst .62s ease-out forwards}
+.battle-fx.holy,.battle-fx.arcane{right:21%;top:44%;font-size:42px;color:#bfeaff;text-shadow:0 0 10px #63cfff;animation:magicPulse .55s ease-out forwards}
+.battle-fx.enemy-slash,.battle-fx.claw{right:auto;left:17%;top:44%;color:#ffb4a8}
+.battle-fx.claw:after{content:"╱";position:absolute;left:18px;top:8px}
+.hero-sprite.attack .hero-art{animation:attackPose .44s steps(2,end)}
+.hero-sprite.cast .hero-art{animation:castPose .52s ease-out}
+.enemy-unit.lunge .enemy-art{animation:enemyPose .42s steps(2,end)}
+.enemy-unit.hit .enemy-art{animation:impactFlash .22s steps(2,end)}
+.hero-sprite.hit .hero-art{animation:impactFlash .22s steps(2,end)}
+@keyframes attackPose{0%,100%{transform:rotate(0)}45%{transform:rotate(-8deg) scale(1.05)}70%{transform:rotate(5deg)}}
+@keyframes castPose{0%,100%{transform:translateY(0)}35%{transform:translateY(-8px);filter:brightness(1.8) drop-shadow(0 0 8px #7bdfff)}}
+@keyframes enemyPose{45%{transform:rotate(-7deg) scale(1.05)}}
+@keyframes impactFlash{50%{filter:brightness(3) saturate(.2);transform:translateX(6px)}}
+@keyframes slashFx{0%{opacity:0;transform:translate(-18px,18px) rotate(-12deg) scale(.5)}25%{opacity:1}100%{opacity:0;transform:translate(18px,-18px) rotate(7deg) scale(1.3)}}
+@keyframes arrowFx{0%{opacity:0;transform:translateX(0)}10%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translateX(255px)}}
+@keyframes fireFx{0%{opacity:0;transform:scale(.2) rotate(-20deg)}35%{opacity:1;transform:scale(1.35) rotate(8deg)}100%{opacity:0;transform:scale(.8) translateY(-20px)}}
+@keyframes healBurst{0%{opacity:0;transform:scale(.3)}40%{opacity:1;transform:scale(1.35)}100%{opacity:0;transform:scale(.8) translateY(-25px)}}
+@keyframes magicPulse{0%{opacity:0;transform:scale(.2)}45%{opacity:1;transform:scale(1.4) rotate(45deg)}100%{opacity:0;transform:scale(.5) rotate(90deg)}}
