@@ -324,3 +324,58 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
  72%{transform:translate(8px,0) rotate(12deg)}
  100%{transform:translate(0,0) rotate(0deg)}
 }
+
+/* ALDEN REAL SWORD ARC — keep body intact and animate a dedicated sword layer */
+.hero-sprite.warrior{isolation:isolate}
+.hero-sprite.warrior.attack::after,
+.hero-sprite.warrior.state-attack::after{
+  content:"";
+  position:absolute;
+  left:69px;
+  bottom:50px;
+  width:9px;
+  height:66px;
+  border-radius:5px 5px 2px 2px;
+  background:linear-gradient(90deg,#78899a 0 18%,#e8f2f7 20% 62%,#a9bbc7 64% 82%,#526878 84%);
+  border:2px solid #263a49;
+  box-shadow:0 0 0 2px rgba(220,242,255,.15);
+  transform-origin:50% 100%;
+  z-index:8;
+  pointer-events:none;
+  animation:aldenBladeSwing .50s cubic-bezier(.2,.75,.25,1) both!important;
+}
+.hero-sprite.warrior.attack::before,
+.hero-sprite.warrior.state-attack::before{
+  content:"";
+  position:absolute;
+  left:61px;
+  bottom:46px;
+  width:27px;
+  height:6px;
+  border-radius:2px;
+  background:#c79a45;
+  border:2px solid #4c351b;
+  transform-origin:50% 50%;
+  z-index:9;
+  pointer-events:none;
+  animation:aldenGuardSwing .50s cubic-bezier(.2,.75,.25,1) both!important;
+}
+.hero-sprite.warrior.attack .hero-art,
+.hero-sprite.warrior.state-attack .hero-art{
+  animation:none!important;
+  transform:none!important;
+}
+@keyframes aldenBladeSwing{
+  0%{transform:rotate(-52deg) translateY(0)}
+  18%{transform:rotate(-70deg) translateY(0)}
+  55%{transform:rotate(64deg) translateY(-2px)}
+  78%{transform:rotate(46deg) translateY(-1px)}
+  100%{transform:rotate(-52deg) translateY(0)}
+}
+@keyframes aldenGuardSwing{
+  0%{transform:rotate(-52deg)}
+  18%{transform:rotate(-70deg)}
+  55%{transform:rotate(64deg)}
+  78%{transform:rotate(46deg)}
+  100%{transform:rotate(-52deg)}
+}
