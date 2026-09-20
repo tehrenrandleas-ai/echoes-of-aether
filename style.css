@@ -294,3 +294,17 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
   object-fit:contain!important;object-position:center bottom!important;
   overflow:visible!important;clip-path:none!important;
 }
+
+/* ALDEN SWORD-SWING PASS — animate complete idle artwork without resizing/cropping */
+.hero-sprite.warrior.state-attack .hero-art,
+.hero-sprite.warrior.state-cast .hero-art{
+  transform-origin:58% 68%!important;
+  animation:aldenSwordSwing .48s ease-in-out!important;
+}
+@keyframes aldenSwordSwing{
+  0%{transform:rotate(0deg) translate(0,0)}
+  18%{transform:rotate(-14deg) translate(-2px,1px)}
+  52%{transform:rotate(17deg) translate(4px,-1px)}
+  72%{transform:rotate(7deg) translate(3px,0)}
+  100%{transform:rotate(0deg) translate(0,0)}
+}
