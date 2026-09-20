@@ -228,3 +228,8 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
 .hero-sprite.warrior.state-idle .hero-art{animation:none!important;transform:none!important}
 .hero-sprite.warrior.state-attack .hero-art,.hero-sprite.warrior.state-cast .hero-art,.hero-sprite.warrior.state-hit .hero-art{width:130px!important;height:126px!important;animation:none!important;transform:none!important;object-fit:contain!important;object-position:center bottom!important}
 .hero-sprite.warrior{overflow:visible!important}
+
+/* ALDEN CLEAN ASSET PASS — identical 80x80 canvases prevent apparent growth */
+.hero-sprite.warrior{width:145px!important;height:92px!important;overflow:visible!important}
+.hero-sprite.warrior .hero-art{width:126px!important;height:126px!important;max-width:none!important;max-height:none!important;object-fit:contain!important;object-position:center bottom!important;clip-path:none!important;animation:none!important;scale:1!important}
+.hero-sprite.warrior.state-idle .hero-art,.hero-sprite.warrior.state-attack .hero-art,.hero-sprite.warrior.state-cast .hero-art,.hero-sprite.warrior.state-hit .hero-art{width:126px!important;height:126px!important;transform:none!important;scale:1!important;animation:none!important}
