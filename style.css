@@ -20,3 +20,34 @@
 .enemy-unit.boss .enemy-art{width:176px;height:166px}
 .enemy-mini{background:linear-gradient(#082640f2,#031427f2);border-color:#6bc7f2;box-shadow:inset 0 0 0 2px #0f3859,0 6px 13px rgba(1,10,18,.65)}
 @media(max-width:520px){.battlefield{height:365px}.party-side{left:5px;bottom:11px;transform:scale(.84);transform-origin:bottom left}.enemy-side{right:3px;bottom:18px;transform:scale(.80);transform-origin:bottom right}.castle{right:2%;width:27%}.waterfall{left:52%;width:10%}}
+
+/* UI 1.2 — classic side-view battle composition */
+.party-side{left:7%;bottom:18px;width:250px;height:350px}
+.hero-sprite{width:150px;height:88px}
+.hero-sprite:nth-child(1){top:8px;left:34px}
+.hero-sprite:nth-child(2){top:88px;left:2px}
+.hero-sprite:nth-child(3){top:170px;left:40px}
+.hero-sprite:nth-child(4){top:252px;left:8px}
+.hero-art{width:116px;height:116px}
+.enemy-side{right:6%;bottom:32px;width:48%;height:320px}
+.enemy-unit:nth-child(1){right:54px;top:28px}
+.enemy-unit:nth-child(2){right:2px;top:164px}
+.enemy-unit:nth-child(3){right:156px;top:180px}
+.enemy-art{width:142px;height:142px}
+.enemy-unit.boss{right:28px!important;top:82px!important}
+.enemy-unit.boss .enemy-art{width:190px;height:180px}
+.waterfall{left:47%;width:9%}
+.stone-path{left:27%;right:11%;opacity:.95}
+@keyframes heroLunge{0%,100%{transform:translateX(0)}38%,66%{transform:translateX(165px)}}
+@keyframes enemyLunge{0%,100%{transform:translateX(0)}42%,68%{transform:translateX(-145px)}}
+@media(max-width:520px){
+ .battlefield{height:365px}
+ .party-side{left:3%;bottom:7px;width:180px;height:340px;transform:scale(.78);transform-origin:bottom left}
+ .hero-sprite:nth-child(1){top:5px;left:38px}.hero-sprite:nth-child(2){top:86px;left:2px}.hero-sprite:nth-child(3){top:168px;left:42px}.hero-sprite:nth-child(4){top:250px;left:6px}
+ .hero-art{width:122px;height:122px}
+ .enemy-side{right:2%;bottom:13px;width:52%;height:315px;transform:scale(.78);transform-origin:bottom right}
+ .enemy-unit:nth-child(1){right:42px;top:25px}.enemy-unit:nth-child(2){right:-4px;top:163px}.enemy-unit:nth-child(3){right:125px;top:180px}
+ .enemy-unit.boss{right:3px!important;top:85px!important}
+ .enemy-unit.boss .enemy-art{width:198px;height:188px}
+ .waterfall{left:48%}
+}
