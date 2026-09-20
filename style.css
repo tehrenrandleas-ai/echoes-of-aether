@@ -77,3 +77,37 @@
 @keyframes fireFx{0%{opacity:0;transform:scale(.2) rotate(-20deg)}35%{opacity:1;transform:scale(1.35) rotate(8deg)}100%{opacity:0;transform:scale(.8) translateY(-20px)}}
 @keyframes healBurst{0%{opacity:0;transform:scale(.3)}40%{opacity:1;transform:scale(1.35)}100%{opacity:0;transform:scale(.8) translateY(-25px)}}
 @keyframes magicPulse{0%{opacity:0;transform:scale(.2)}45%{opacity:1;transform:scale(1.4) rotate(45deg)}100%{opacity:0;transform:scale(.5) rotate(90deg)}}
+
+/* ART 2.0 — richer in-game pixel presentation, no mockup */
+.scene-art{image-rendering:pixelated;background:
+ linear-gradient(180deg,#6aaedf 0 20%,#4f8e9a 20% 31%,#315f48 31% 50%,#5b7548 50% 100%)}
+.scene-art:before{background:
+ linear-gradient(135deg,transparent 0 7%,#183c31 7% 12%,transparent 12% 17%,#24523d 17% 23%,transparent 23% 30%,#17392f 30% 37%,transparent 37% 44%,#214b38 44% 51%,transparent 51% 59%,#193e32 59% 66%,transparent 66%),
+ linear-gradient(180deg,transparent 0 44%,rgba(22,57,39,.88) 44% 53%,transparent 53%);opacity:.95}
+.far-trees{filter:drop-shadow(0 5px 0 #173a2d)}
+.ruin-columns{opacity:.72;background:
+ repeating-linear-gradient(90deg,transparent 0 12%,#657264 12% 16%,#87917e 16% 20%,#4d5e51 20% 23%,transparent 23% 36%);
+ filter:drop-shadow(5px 6px 0 rgba(19,43,31,.42))}
+.castle{opacity:.64;background:
+ linear-gradient(90deg,#596b62 0 18%,transparent 18% 23%,#69786c 23% 45%,transparent 45% 51%,#53645a 51% 70%,transparent 70% 75%,#6d7a6d 75%);
+ clip-path:polygon(0 25%,12% 25%,12% 0,27% 0,27% 22%,43% 22%,43% 7%,57% 7%,57% 30%,73% 30%,73% 15%,88% 15%,88% 100%,0 100%)}
+.waterfall{background:
+ linear-gradient(90deg,transparent 0 5%,#8edcf1 8%,#dffbff 26%,#72cae7 43%,#f3ffff 60%,#8edcf1 76%,transparent 96%);
+ box-shadow:0 12px 20px rgba(177,241,255,.25)}
+.stone-path{background:
+ repeating-linear-gradient(174deg,transparent 0 15px,rgba(203,191,132,.18) 16px 20px),
+ linear-gradient(155deg,transparent 0 10%,rgba(169,157,103,.34) 11% 78%,transparent 79%)}
+.foreground{height:20%;background:
+ radial-gradient(ellipse at 7% 90%,#152f23 0 18%,transparent 19%),
+ radial-gradient(ellipse at 91% 95%,#132d22 0 20%,transparent 21%),
+ linear-gradient(174deg,transparent 0 27%,rgba(23,49,29,.8) 28% 48%,transparent 49%)}
+.hero-art,.enemy-art{image-rendering:pixelated}
+.hero-art{filter:drop-shadow(4px 7px 0 rgba(10,24,17,.55)) drop-shadow(0 0 1px #dce9e6)}
+.enemy-art{filter:drop-shadow(5px 8px 0 rgba(10,24,17,.55))}
+.hero-sprite:after,.enemy-unit:after{content:"";position:absolute;z-index:-1;left:18%;right:18%;bottom:2px;height:10px;background:rgba(7,21,15,.38);border-radius:50%;filter:blur(2px)}
+.hero-sprite:nth-child(1){left:48px}.hero-sprite:nth-child(2){left:8px}.hero-sprite:nth-child(3){left:52px}.hero-sprite:nth-child(4){left:13px}
+.enemy-mini{border-width:2px;background:linear-gradient(180deg,rgba(5,35,57,.96),rgba(2,17,31,.96));box-shadow:inset 0 0 0 1px #1e5a82,0 7px 15px #071a18}
+@media(max-width:520px){
+ .hero-art{filter:drop-shadow(3px 5px 0 rgba(10,24,17,.6))}
+ .scene-art:before{opacity:.9}
+}
