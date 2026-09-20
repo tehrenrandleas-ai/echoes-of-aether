@@ -1,6 +1,6 @@
-const HERO_ART={warrior:'assets/alden-raster.png',ranger:'assets/lyra-raster.png',mage:'assets/elias-raster.png',cleric:'assets/mira-raster.png'};
+const HERO_ART={warrior:'assets/alden-raster.png',ranger:'assets/lyra.svg',mage:'assets/elias-raster.png',cleric:'assets/mira-raster.png'};
 const HERO_STATE_ART={
- warrior:{idle:HERO_ART.warrior,attack:'assets/alden-attack.svg',cast:'assets/alden-attack.svg',hit:'assets/alden-hit.svg',ko:'assets/alden-ko.svg'},
+ warrior:{idle:HERO_ART.warrior,attack:HERO_ART.warrior,cast:HERO_ART.warrior,hit:HERO_ART.warrior,ko:HERO_ART.warrior},
  ranger:{idle:HERO_ART.ranger,attack:HERO_ART.ranger,cast:HERO_ART.ranger,hit:HERO_ART.ranger,ko:HERO_ART.ranger},
  mage:{idle:HERO_ART.mage,attack:HERO_ART.mage,cast:HERO_ART.mage,hit:HERO_ART.mage,ko:HERO_ART.mage},
  cleric:{idle:HERO_ART.cleric,attack:HERO_ART.cleric,cast:HERO_ART.cleric,hit:HERO_ART.cleric,ko:HERO_ART.cleric}
