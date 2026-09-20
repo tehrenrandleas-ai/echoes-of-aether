@@ -2,57 +2,29 @@ const HEROES=[
 {name:"Alden",cls:"Warrior",role:"warrior",ability:"POWER STRIKE",maxHp:150,hp:150,atk:19,spd:1.15,level:1,xp:0,nextXp:60,aether:0},
 {name:"Lyra",cls:"Ranger",role:"ranger",ability:"DOUBLE SHOT",maxHp:110,hp:110,atk:15,spd:.82,level:1,xp:0,nextXp:55,aether:0},
 {name:"Elias",cls:"Mage",role:"mage",ability:"FIRE",maxHp:90,hp:90,atk:23,spd:1.35,level:1,xp:0,nextXp:58,aether:0},
-{name:"Mira",cls:"Cleric",role:"cleric",ability:"CURE",maxHp:105,hp:105,atk:11,spd:1.5,level:1,xp:0,nextXp:52,aether:0}
-];
+{name:"Mira",cls:"Cleric",role:"cleric",ability:"CURE",maxHp:105,hp:105,atk:11,spd:1.5,level:1,xp:0,nextXp:52,aether:0}];
 const enemies=[["Green Slime",70,8,12],["Forest Goblin",90,10,15],["Dire Bat",105,11,18],["Wild Wolf",125,12,21],["Goblin Guard",155,14,25],["Forest Imp",180,15,30],["Moss Golem",220,17,36],["Dark Wolf",250,19,42],["Goblin Captain",310,21,50],["ELDER WYRM",700,27,140]];
-let state={stage:1,gold:0,paused:false,enemy:null,heroTimers:[0,0,0,0],enemyTimer:0,ended:false,busy:false};
-const $=id=>document.getElementById(id);
+let state={stage:1,gold:0,paused:false,enemy:null,heroTimers:[0,0,0,0],enemyTimer:0,ended:false,animating:false};
+const $=id=>document.getElementById(id),wait=ms=>new Promise(r=>setTimeout(r,ms));
 function makeEnemy(){let e=enemies[state.stage-1];state.enemy={name:e[0],maxHp:e[1],hp:e[1],atk:e[2],gold:e[3]};render()}
 function render(){
- $("stage").textContent=state.stage+" / 10";$("gold").textContent=state.gold;
- $("enemyName").textContent=state.enemy.name;$("enemyLevel").textContent="LV "+state.stage;
- $("enemyHp").textContent=Math.max(0,Math.ceil(state.enemy.hp))+" / "+state.enemy.maxHp+" HP";
- $("enemyHpBar").style.width=Math.max(0,state.enemy.hp/state.enemy.maxHp*100)+"%";
- $("enemySprite").className="pixel enemy"+(state.stage===10?" boss":"");
- $("partyField").innerHTML=HEROES.map((h,i)=>'<div class="hero-sprite '+h.role+' '+(h.hp<=0?'dead':'')+'" id="sprite'+i+'"><span class="hero-icon"></span><label>'+h.name+'</label></div>').join("");
- $("aetherPanel").innerHTML=HEROES.map((h,i)=>'<button class="aether-btn '+(h.aether>=100&&h.hp>0?'ready':'')+'" data-i="'+i+'" '+(h.aether<100||h.hp<=0||state.ended?'disabled':'')+'><span class="charge" style="width:'+h.aether+'%"></span><b>'+h.name+' · '+h.ability+'</b><small>AETHER '+Math.floor(h.aether)+'%</small></button>').join("");
- document.querySelectorAll(".aether-btn").forEach(b=>b.onclick=()=>useAether(+b.dataset.i));
- $("partyPanel").innerHTML=HEROES.map((h,i)=>'<div class="card" id="card'+i+'"><div class="card-top"><b>'+h.name+'</b><b>LV '+h.level+'</b></div><div class="class">'+h.cls+'</div><div class="stats">HP '+Math.ceil(h.hp)+' / '+h.maxHp+'</div><div class="hpbar"><i style="width:'+Math.max(0,h.hp/h.maxHp*100)+'%"></i></div><div class="stats xp">XP '+h.xp+' / '+h.nextXp+'</div></div>').join("");
-}
-function log(t){$("battleLog").textContent=t}
-function animateHero(i){let s=$("sprite"+i);if(s){s.classList.add("attack");setTimeout(()=>s&&s.classList.remove("attack"),150)}}
-function hitEnemy(magic=false){let e=$("enemySprite");e.classList.add(magic?"magic-hit":"hit");setTimeout(()=>e&&e.classList.remove(magic?"magic-hit":"hit"),magic?400:180)}
-function fx(symbol,heal=false){let d=document.createElement("div");d.className="fx"+(heal?" heal-fx":"");d.textContent=symbol;$("fxLayer").appendChild(d);setTimeout(()=>d.remove(),600)}
-function gainAether(h,n){h.aether=Math.min(100,h.aether+n)}
-function attack(i){
- let h=HEROES[i];if(h.hp<=0||state.enemy.hp<=0)return;
- let crit=Math.random()<.12,dmg=Math.floor(h.atk*(.85+Math.random()*.3)*(crit?1.8:1));state.enemy.hp-=dmg;gainAether(h,13);
- log(h.name+" attacks "+state.enemy.name+" for "+dmg+(crit?" CRITICAL!":""));animateHero(i);hitEnemy();
- if(state.enemy.hp<=0)victory();else render()
-}
-function enemyAttack(){
- let alive=HEROES.map((h,i)=>h.hp>0?i:null).filter(i=>i!==null);if(!alive.length)return;
- let i=alive[Math.floor(Math.random()*alive.length)],h=HEROES[i],dmg=Math.floor(state.enemy.atk*(.8+Math.random()*.4));h.hp=Math.max(0,h.hp-dmg);gainAether(h,8);
- log(state.enemy.name+" hits "+h.name+" for "+dmg+"!");if(HEROES.every(x=>x.hp<=0))defeat();else render()
-}
-function useAether(i){
- let h=HEROES[i];if(h.aether<100||h.hp<=0||state.paused||state.ended||state.enemy.hp<=0)return;h.aether=0;animateHero(i);
- if(i===0){let dmg=Math.floor(h.atk*3.2);state.enemy.hp-=dmg;fx("✦");hitEnemy();log("Alden unleashes POWER STRIKE for "+dmg+" damage!")}
- if(i===1){let d1=Math.floor(h.atk*1.65),d2=Math.floor(h.atk*1.65);state.enemy.hp-=d1+d2;fx("➶➶");hitEnemy();log("Lyra fires DOUBLE SHOT for "+(d1+d2)+" damage!")}
- if(i===2){let dmg=Math.floor(h.atk*3.7);state.enemy.hp-=dmg;fx("🔥");hitEnemy(true);log("Elias casts FIRE for "+dmg+" damage!")}
- if(i===3){let target=HEROES.filter(x=>x.hp>0).sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]||h,heal=Math.floor(h.maxHp*.75+h.atk*2);target.hp=Math.min(target.maxHp,target.hp+heal);fx("✚",true);log("Mira casts CURE! "+target.name+" recovers "+heal+" HP.")}
- if(state.enemy.hp<=0)victory();else render()
-}
-function victory(){
- let reward=state.enemy.gold;state.gold+=reward;
- HEROES.forEach((h,i)=>{if(h.hp>0){h.xp+=Math.floor(18+state.stage*5);gainAether(h,15);while(h.xp>=h.nextXp){h.xp-=h.nextXp;h.level++;h.nextXp=Math.floor(h.nextXp*1.28);h.maxHp+=12;h.hp=h.maxHp;h.atk+=3;setTimeout(()=>{let c=$("card"+i);if(c)c.classList.add("levelup")},50)}}});
- if(state.stage===10){state.ended=true;render();log("VICTORY! The Elder Wyrm falls. Prototype 0.2 complete!");return}
- log(state.enemy.name+" defeated! +"+reward+" gold. Advancing...");state.paused=true;render();
- setTimeout(()=>{state.stage++;HEROES.forEach(h=>h.hp=Math.min(h.maxHp,h.hp+Math.floor(h.maxHp*.18)));state.heroTimers=[0,0,0,0];state.enemyTimer=0;makeEnemy();state.paused=false;log("Stage "+state.stage+" begins!")},900)
-}
-function defeat(){state.paused=true;render();log("The party was defeated... recovering and retrying Stage "+state.stage+".");setTimeout(()=>{HEROES.forEach(h=>{h.hp=h.maxHp;h.aether=Math.min(100,h.aether+25)});makeEnemy();state.heroTimers=[0,0,0,0];state.enemyTimer=0;state.paused=false},1800)}
-function reset(){HEROES.forEach((h,i)=>{let base=[[150,19,60],[110,15,55],[90,23,58],[105,11,52]][i];h.maxHp=h.hp=base[0];h.atk=base[1];h.level=1;h.xp=0;h.nextXp=base[2];h.aether=0});state={stage:1,gold:0,paused:false,enemy:null,heroTimers:[0,0,0,0],enemyTimer:0,ended:false};makeEnemy();log("A new adventure begins...")}
-$("pauseBtn").onclick=()=>{state.paused=!state.paused;$("pauseBtn").textContent=state.paused?"▶ RESUME":"Ⅱ PAUSE";log(state.paused?"Battle paused.":"Auto battle resumed.")};
-$("resetBtn").onclick=()=>{if(confirm("Reset Prototype 0.2?"))reset()};
-let last=performance.now();function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;if(!state.paused&&!state.ended&&state.enemy){HEROES.forEach((h,i)=>{if(h.hp>0){state.heroTimers[i]+=dt;if(state.heroTimers[i]>=h.spd){state.heroTimers[i]=0;attack(i)}}});state.enemyTimer+=dt;if(state.enemyTimer>=1.75&&state.enemy.hp>0){state.enemyTimer=0;enemyAttack()}}requestAnimationFrame(loop)}
-makeEnemy();requestAnimationFrame(loop);
+ $("stage").textContent=state.stage+" / 10";$("gold").textContent=state.gold;$("enemyName").textContent=state.enemy.name;$("enemyLevel").textContent="LV "+state.stage;$("enemyHp").textContent=Math.max(0,Math.ceil(state.enemy.hp))+" / "+state.enemy.maxHp+" HP";$("enemyHpBar").style.width=Math.max(0,state.enemy.hp/state.enemy.maxHp*100)+"%";$("enemySprite").className="enemy-sprite"+(state.stage===10?" boss":"");
+ $("partyField").innerHTML=HEROES.map((h,i)=>'<div class="hero-sprite '+h.role+' '+(h.hp<=0?'dead':'')+'" id="sprite'+i+'"><label>'+h.name+'</label><span class="hero-icon"></span></div>').join("");
+ $("aetherPanel").innerHTML=HEROES.map((h,i)=>'<button class="aether-btn '+(h.aether>=100&&h.hp>0?'ready':'')+'" data-i="'+i+'" '+(h.aether<100||h.hp<=0||state.ended?'disabled':'')+'><span class="charge" style="width:'+h.aether+'%"></span><b>'+h.name+' · '+h.ability+'</b><small>AETHER '+Math.floor(h.aether)+'%</small></button>').join("");document.querySelectorAll(".aether-btn").forEach(b=>b.onclick=()=>useAether(+b.dataset.i));
+ $("partyPanel").innerHTML=HEROES.map(h=>'<div class="card"><div class="card-top"><b>'+h.name+'</b><b>LV '+h.level+'</b></div><div class="class">'+h.cls+'</div><div class="stats">HP '+Math.ceil(h.hp)+' / '+h.maxHp+'</div><div class="hpbar"><i style="width:'+Math.max(0,h.hp/h.maxHp*100)+'%"></i></div><div class="stats xp">XP '+h.xp+' / '+h.nextXp+'</div></div>').join("")}
+function log(t){$("battleLog").textContent=t}function gain(h,n){h.aether=Math.min(100,h.aether+n)}
+function floatNum(n,onHero=false){let d=document.createElement("div");d.className="damage "+(onHero?"hero-dmg":"enemy-dmg");d.textContent=n;$("fxLayer").appendChild(d);setTimeout(()=>d.remove(),750)}
+function spell(symbol,heal=false){let d=document.createElement("div");d.className="spellfx"+(heal?" healfx":"");d.textContent=symbol;$("fxLayer").appendChild(d);setTimeout(()=>d.remove(),700)}
+async function heroAttack(i){let h=HEROES[i];if(state.animating||h.hp<=0||state.enemy.hp<=0)return;state.animating=true;let s=$("sprite"+i);if(s)s.classList.add("attack");await wait(170);let crit=Math.random()<.12,dmg=Math.floor(h.atk*(.85+Math.random()*.3)*(crit?1.8:1));state.enemy.hp-=dmg;gain(h,13);$("enemySprite").classList.add("hit");floatNum(dmg);log(h.name+" attacks for "+dmg+(crit?" — CRITICAL!":""));await wait(220);state.animating=false;if(state.enemy.hp<=0)victory();else render()}
+async function enemyAttack(){if(state.animating)return;let alive=HEROES.map((h,i)=>h.hp>0?i:null).filter(i=>i!==null);if(!alive.length)return;state.animating=true;let i=alive[Math.floor(Math.random()*alive.length)],h=HEROES[i],e=$("enemySprite");e.classList.add("lunge");await wait(190);let dmg=Math.floor(state.enemy.atk*(.8+Math.random()*.4));h.hp=Math.max(0,h.hp-dmg);gain(h,8);let s=$("sprite"+i);if(s)s.classList.add("hit");floatNum(dmg,true);log(state.enemy.name+" strikes "+h.name+" for "+dmg+"!");await wait(250);state.animating=false;if(HEROES.every(x=>x.hp<=0))defeat();else render()}
+async function useAether(i){let h=HEROES[i];if(state.animating||h.aether<100||h.hp<=0||state.paused||state.ended)return;state.animating=true;h.aether=0;let s=$("sprite"+i);if(s)s.classList.add(i>=2?"cast":"attack");await wait(180);
+ if(i===0){let d=Math.floor(h.atk*3.2);state.enemy.hp-=d;spell("✦");floatNum(d);log("Alden unleashes POWER STRIKE! "+d+" damage.")}
+ if(i===1){let d=Math.floor(h.atk*3.3);state.enemy.hp-=d;spell("➶➶");floatNum(d);log("Lyra fires DOUBLE SHOT! "+d+" damage.")}
+ if(i===2){let d=Math.floor(h.atk*3.7);state.enemy.hp-=d;spell("🔥");floatNum(d);log("Elias casts FIRE! "+d+" damage.")}
+ if(i===3){let t=HEROES.filter(x=>x.hp>0).sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]||h,heal=Math.floor(h.maxHp*.75+h.atk*2);t.hp=Math.min(t.maxHp,t.hp+heal);spell("✚",true);log("Mira casts CURE! "+t.name+" recovers "+heal+" HP.")}
+ await wait(420);state.animating=false;if(state.enemy.hp<=0)victory();else render()}
+function victory(){let reward=state.enemy.gold;state.gold+=reward;HEROES.forEach(h=>{if(h.hp>0){h.xp+=Math.floor(18+state.stage*5);gain(h,15);while(h.xp>=h.nextXp){h.xp-=h.nextXp;h.level++;h.nextXp=Math.floor(h.nextXp*1.28);h.maxHp+=12;h.hp=h.maxHp;h.atk+=3}}});if(state.stage===10){state.ended=true;render();log("VICTORY! The Elder Wyrm falls. Prototype 0.3 complete!");return}log(state.enemy.name+" defeated! +"+reward+" gold.");state.paused=true;render();setTimeout(()=>{state.stage++;HEROES.forEach(h=>h.hp=Math.min(h.maxHp,h.hp+Math.floor(h.maxHp*.18)));state.heroTimers=[0,0,0,0];state.enemyTimer=0;makeEnemy();state.paused=false;log("Stage "+state.stage+" begins!")},900)}
+function defeat(){state.paused=true;render();log("The party falls... regrouping.");setTimeout(()=>{HEROES.forEach(h=>{h.hp=h.maxHp;gain(h,25)});makeEnemy();state.heroTimers=[0,0,0,0];state.enemyTimer=0;state.paused=false},1800)}
+function reset(){HEROES.forEach((h,i)=>{let b=[[150,19,60],[110,15,55],[90,23,58],[105,11,52]][i];h.maxHp=h.hp=b[0];h.atk=b[1];h.level=1;h.xp=0;h.nextXp=b[2];h.aether=0});state={stage:1,gold:0,paused:false,enemy:null,heroTimers:[0,0,0,0],enemyTimer:0,ended:false,animating:false};makeEnemy();log("A new adventure begins...")}
+$("pauseBtn").onclick=()=>{state.paused=!state.paused;$("pauseBtn").textContent=state.paused?"▶ RESUME":"Ⅱ PAUSE";log(state.paused?"Battle paused.":"Auto battle resumed.")};$("resetBtn").onclick=()=>{if(confirm("Reset Prototype 0.3?"))reset()};
+let last=performance.now();function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;if(!state.paused&&!state.ended&&state.enemy&&!state.animating){for(let i=0;i<HEROES.length;i++){let h=HEROES[i];if(h.hp>0){state.heroTimers[i]+=dt;if(state.heroTimers[i]>=h.spd){state.heroTimers[i]=0;heroAttack(i);break}}}state.enemyTimer+=dt;if(state.enemyTimer>=1.75&&!state.animating&&state.enemy.hp>0){state.enemyTimer=0;enemyAttack()}}requestAnimationFrame(loop)}makeEnemy();requestAnimationFrame(loop);
