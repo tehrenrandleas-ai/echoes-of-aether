@@ -169,3 +169,20 @@ linear-gradient(177deg,transparent 0 55%,rgba(16,46,34,.88) 56%)}
  .command-deck{grid-template-columns:105px 1fr}.command-list{padding:6px}.command-list>div:not(.command-title){font-size:7px;padding:3px 5px}
  .aether-btn{min-height:38px}.party-panel{padding:5px;gap:5px}.card{min-height:75px}.portrait{width:50px;height:62px}
 }
+
+/* character consistency */
+.hero-sprite{display:flex;align-items:flex-end;justify-content:center;overflow:visible}
+.hero-art{width:118px;height:118px;object-fit:contain;object-position:center bottom;transform-origin:50% 100%}
+.hero-sprite:nth-child(1) .hero-art{width:120px;height:112px}
+.hero-sprite:nth-child(2) .hero-art{width:110px;height:112px}
+.hero-sprite:nth-child(3) .hero-art{width:116px;height:116px}
+.hero-sprite:nth-child(4) .hero-art{width:112px;height:116px}
+.card .portrait{object-fit:contain;object-position:center center}
+.scene-art{background:linear-gradient(180deg,#609ab0 0 16%,#315f55 16% 34%,#1c493b 34% 57%,#3f6040 57% 100%)}
+.scene-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 5% 52%,rgba(11,43,31,.82) 0 17%,transparent 18%),radial-gradient(ellipse at 96% 48%,rgba(10,40,29,.78) 0 20%,transparent 21%),linear-gradient(104deg,transparent 0 13%,rgba(222,241,181,.10) 14% 20%,transparent 21% 37%,rgba(229,244,192,.12) 38% 45%,transparent 46% 100%)}
+.castle{background:linear-gradient(90deg,#596d5e,#7a806c 48%,#4d6256);opacity:.48}
+.ruin-columns{background:repeating-linear-gradient(90deg,transparent 0 12%,rgba(155,157,126,.5) 13% 20%,transparent 21% 34%)}
+.waterfall{background:linear-gradient(90deg,rgba(149,230,242,.15),#c7f8ff 22%,#74d9ee 46%,#e1ffff 64%,rgba(75,192,219,.18));border-radius:2px 2px 40% 40%}
+.stone-path{filter:contrast(1.08);opacity:.9}
+.enemy-art{image-rendering:pixelated}
+@media(max-width:520px){.hero-art{width:120px;height:120px}.hero-sprite:nth-child(1) .hero-art{width:122px;height:116px}.hero-sprite:nth-child(2) .hero-art{width:112px;height:116px}.hero-sprite:nth-child(3) .hero-art{width:118px;height:118px}.hero-sprite:nth-child(4) .hero-art{width:114px;height:118px}}
