@@ -38,3 +38,27 @@ linear-gradient(#77b8f1 0 24%,#5e83a8 25% 34%,#365d50 35% 58%,#6f8154 59% 100%)}
 .hero-icon,.enemy-body{display:none!important}
 @keyframes heroArtIdle{50%{transform:translateY(-2px)}}@keyframes enemyArtIdle{50%{transform:translateY(-2px)}}
 .hero-sprite.attack .hero-art{animation:none}.hero-sprite.cast .hero-art{animation:none}
+
+/* 0.7 battle presentation cleanup */
+.battlefield{height:380px;background:#162d35}
+.scene-art{background:
+linear-gradient(180deg,#4b7692 0 27%,#31534d 27% 52%,#354c32 52% 100%)}
+.scene-art:before{right:5%;top:7%;width:34%;height:46%;background:
+linear-gradient(90deg,transparent 0 11%,#687b74 12% 17%,transparent 18% 28%,#687b74 29% 35%,transparent 36% 47%,#687b74 48% 54%,transparent 55%),
+linear-gradient(#5d706a 0 13%,transparent 14%);
+clip-path:polygon(10% 0,88% 0,100% 100%,0 100%);opacity:.75}
+.scene-art:after{left:43%;top:25%;width:13%;height:55%;background:linear-gradient(90deg,transparent 0 25%,#bde9f4 26% 73%,transparent 74%);opacity:.65}
+.party-side{left:18px;bottom:40px;height:275px;width:120px}
+.hero-sprite{width:94px;height:64px}
+.hero-sprite:nth-child(1){top:0}.hero-sprite:nth-child(2){top:66px}.hero-sprite:nth-child(3){top:132px}.hero-sprite:nth-child(4){top:198px}
+.hero-art{width:74px;height:74px}
+.hero-sprite label{display:none}
+.enemy-side{right:14px;bottom:42px;width:52%;height:270px}
+.enemy-unit{width:118px;height:112px}
+.enemy-unit:nth-child(1){right:84px;top:22px}.enemy-unit:nth-child(2){right:4px;top:130px}.enemy-unit:nth-child(3){right:130px;top:154px}
+.enemy-sprite{height:88px}.enemy-art{width:102px;height:102px}.enemy-unit.golem .enemy-art{width:112px;height:112px}.enemy-unit.boss .enemy-art{width:142px;height:130px}
+.enemy-mini{position:absolute;left:50%;transform:translateX(-50%);bottom:-5px;width:108px;background:rgba(4,18,31,.82);border:0;border-top:2px solid #5ca6d2;padding:3px 5px;box-shadow:0 4px 10px #07131b}
+.enemy-mini b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:7px;color:#e7f5ff}.enemy-mini small{font-size:6px;color:#a7c7d8}.enemy-mini .bar{height:3px;margin:2px 0;background:#14202b}.enemy-mini i{background:#d65258}
+.enemy-unit.target{filter:drop-shadow(0 0 8px rgba(99,214,255,.7))}
+.battle-log{height:43px;padding:9px 13px}
+@media(max-height:760px){.battlefield{height:315px}.party-side{bottom:22px}.enemy-side{bottom:25px}}
